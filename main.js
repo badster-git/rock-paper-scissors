@@ -5,37 +5,19 @@ const images = Array.from(document.querySelectorAll('.card-image')),
       d_computerScore = document.querySelector('.computer-score'),
       d_rndNumber = document.querySelector('.rnd-number');
 
+let playerScore = 0,
+    computerScore = 0,
+    rndNumber = 1;
+
 images.forEach((image) => {
     image.addEventListener('click', () => {
         if (playerScore >= 5 || computerScore >= 5) { resetGame(); }
-        else { startGame(image.dataset.image); }
+        else { 
+            const results = startGame(image.dataset.image);
+            setResults(results);
+        }
     })
 });
-
-let playerScore = 0,
-    computerScore = 0,
-    rndNumber = 1,
-    tl = anime.timeline({
-        loop: false,
-        autoplay: false
-    }).add({
-        targets: '.game-anim .line',
-        opacity: [0.5,1],
-        scaleX: [0, 1],
-        easing: "easeInOutExpo",
-        duration: 700
-      }).add({
-        targets: '.game-anim .line',
-        duration: 600,
-        easing: "easeOutExpo",
-        translateY: (el, i) => (-0.625 + 0.625*2*i) + "em"
-      });
-
-function getComputerMove() {
-    const moves = ['Rock', 'Paper', 'Scissors'];
-    let rand_num = Math.floor(Math.random() * (3));
-    return moves[rand_num];
-}
 
 function playRound(playerSelection, computerSelection) {
     let possibilities = {
@@ -53,49 +35,65 @@ function playRound(playerSelection, computerSelection) {
     }
 }
 
-function getResults(result) {
+function setResults(result) {
     if (result.slice(4,5) === 'W') playerScore++;
     else if (result.slice(4,5) === 'L') computerScore++;
     rndNumber++;
-}
 
-function setResults() {
     d_playerScore.textContent = playerScore;
     d_computerScore.textContent = computerScore;
     d_rndNumber.textContent = rndNumber;
-    message.textContent = rndResult;
+    message.textContent = result;
+
+    if (playerScore >= 5 && computerScore < 5) { message.textContent = 'Game Over. You Won!'; }
+    else if (playerScore < 5 && computerScore >= 5) { message.textContent = 'Game Over. You Lost!'; }
+}
+
+function getComputerMove() {
+    const moves = ['Rock', 'Paper', 'Scissors'];
+    let rand_num = Math.floor(Math.random() * (3));
+    return moves[rand_num];
+}
+
+function updateImages(playerSelection, computerSelection) {
+    const playerId = document.getElementById("player-result"),
+          computerId = document.getElementById("computer-result");
+
+    playerId.src = `images/${playerSelection.toLowerCase()}-hand.png`;
+    computerId.src = `images/${computerSelection.toLowerCase()}-hand-2.png`;
+    playerId.alt = `${capitalize(playerSelection)}`;
+    computerId.alt = `${capitalize(computerSelection)}`;
+    playerId.style.opacity = "1";
+    computerId.style.opacity = "1";
 }
 
 function startGame(playerChoice) {
     let playerMove = capitalize(playerChoice),
-        computerMove = getComputerMove(),
-        rndResult = playRound(playerMove, computerMove);
-    
-    animateGameStart();
-
-
-    if (playerScore >= 5 && computerScore < 5) { message.textContent = 'Game Over. You Won!'; }
-    else if (playerScore < 5 && computerScore >= 5) { message.textContent = 'Game Over. You Lost!'; }
-
+        computerMove = getComputerMove();
+       
+    updateImages(playerMove, computerMove);
+    return playRound(playerMove, computerMove);
 }
 
 function resetGame() {
+    const playerId = document.getElementById("player-result"),
+          computerId = document.getElementById("computer-result");
     playerScore = 0,
     computerScore = 0,
     rndNumber = 1;
-    animateGameReset();
     d_playerScore.textContent = playerScore;
     d_computerScore.textContent = computerScore;
     d_rndNumber.textContent = rndNumber;
     message.textContent = '';
+    playerId.removeAttribute('alt');
+    playerId.removeAttribute('style');
+    playerId.removeAttribute('src');
+    computerId.removeAttribute('alt');
+    computerId.removeAttribute('style');
+    computerId.removeAttribute('src');
 }
 
-function animateGameStart() {
-    console.log("animation started");
-    tl.play();
-}
-
+// Helper Functions
 const capitalize = (str) => {
     return str.toLowerCase().slice(0,1).toUpperCase().concat(str.slice(1));
 }
-//console.log(Game());

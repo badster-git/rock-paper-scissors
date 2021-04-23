@@ -1,5 +1,9 @@
 @import url('https://fonts.google.com/specimen/Inconsolata');
 $main-font: 'Inconsolata' sans-serif;
+$rose-red: #922C40;
+$dark-blue: #1E2640;
+$light-orange: #F26336;
+$light-blue: #45C1C1;
 
 html {
     box-sizing: border-box;
@@ -7,21 +11,40 @@ html {
 body {
     font-size: 62.5%;
     font-family: $main-font;
+    background-color: $rose-red;
+}
+
+.text {
+    color: $dark-blue;
+}
+.text--player {
+    color: $light-blue;
+}
+.text--computer {
+    color: $light-orange;
+}
+.text--dark {
+    color: black;
 }
 
 .heading {
-    margin: 50px 0;
+    margin: 10px 0;
     text-align: center;
-    font-size: 5rem;
+    font-size: 3.25rem;
+    color: $dark-blue;
 }
 .block {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 15px;
+    padding: 5px;
 }
 .d-flex {
     display: flex;
     justify-content: space-between;
+}
+.d-flex--center {
+    display: flex;
+    justify-content: center;
 }
 .card {
     text-align: center;
@@ -31,20 +54,29 @@ body {
     cursor: pointer;
     position: relative;
 }
-.image {
+.image,
+.image-left, 
+.image-right {
     width: 250px;
     height: 250px;
 }
-.card-text {
-    text-transform: capitalize;
-    font-size: 2.5rem;
+@media only screen and (max-width: 800px) {
+    .block {
+        max-width: 700px;
+    }
+    .image,
+    .image-left, 
+    .image-right {
+        width: 160px;
+        height: 160px;
+    }
 }
 .score {
     display: flex;
     justify-content: center;
     margin-bottom: 25px;
     margin: 0 auto;
-    font-size: 3rem;
+    font-size: 2rem;
 }
 .round {
     display: flex;
@@ -58,33 +90,7 @@ body {
     margin-bottom: 20px;
 }
 
-.game-anim {
-    position: relative;
-    display: flex;
-    justify-content: center;
-}
-
-.game-anim .image-wrapper {
-    position: relative;
-    display: inline-block;
-    padding-top: 0.1rem;
-    padding-right: 0.05rem;
-    padding-bottom: 0.15rem;
-}
-
-.game-anim .line {
-    position: absolute;
-    left: 40%;
-    top: 0;
-    bottom: 0;
-    margin: auto;
-    height: 3px;
-    width: 100px;
-    transform-origin: 0.5 0;
-    background-color: black;
-}
-
-.game-anim .image {
-    display: inline-block;
+#player-result,
+#computer-result {
     opacity: 0;
 }

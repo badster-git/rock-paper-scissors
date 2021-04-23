@@ -10,44 +10,41 @@
             <h1 class="heading">Rock Paper Scissors</h1>
             <div class="block d-flex">
                 <div class="round">
-                    <span class="prefix">Round: </span>
-                    <span class="rnd-number">1</span>
+                    <span class="prefix text--dark">Round: </span>
+                    <span class="rnd-number text--dark">1</span>
                 </div>
             </div>
             <div class="block d-flex">
                 <div class="score">
-                    <div class="player-score">0</div>
-                    <div style="margin: 0px 50px">-</div>
-                    <div class="computer-score">0</div>
+                    <div class="player-score text--player">0</div>
+                    <div class="text--dark" style="margin: 0px 50px">-</div>
+                    <div class="computer-score text--computer">0</div>
                 </div>
             </div>
-            <div class="game-anim">
-                <span class="image-wrapper">
-                    <span class="line line1"></span>
-                    <span class="image image-left"></span>
-                    <span class="image image-right"></span>
-                    <span class="line line2"></span>
-                </span>
+            <div class="block">
+                <div class="block d-flex--center result-section">
+                    <img id="player-result" class="image"></img>
+                    <img id="computer-result" class="image"></img>
+                </div>
             </div>
-            <div class="message"></div>
+            <div class="block">
+                <div id="message-result" class="message"></div>
+            </div>
             <div class="block d-flex">
                 <div class="card">
                     <div class="card-image" data-image="rock">
                         <img class="image" src="images/rock-hand-3.png" alt="Rock" class="image" /> 
                     </div>
-                    <div class="card-text">Rock</div>
                 </div>
                 <div class="card">
                     <div class="card-image" data-image="paper">
                         <img class="image" src="images/paper-hand-3.png" alt="Paper" class="image" />
                     </div>
-                    <div class="card-text">Paper</div>
                 </div>
                 <div class="card">
                     <div class="card-image" data-image="scissors">
                         <img class="image" src="images/scissors-hand-3.png" alt="Scissors" class="image" />
                     </div>
-                    <div class="card-text">Scissors</div>
                 </div>
             </div>
         </main>
