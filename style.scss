@@ -1,0 +1,90 @@
+@import url('https://fonts.google.com/specimen/Inconsolata');
+$main-font: 'Inconsolata' sans-serif;
+
+html {
+    box-sizing: border-box;
+}
+body {
+    font-size: 62.5%;
+    font-family: $main-font;
+}
+
+.heading {
+    margin: 50px 0;
+    text-align: center;
+    font-size: 5rem;
+}
+.block {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 15px;
+}
+.d-flex {
+    display: flex;
+    justify-content: space-between;
+}
+.card {
+    text-align: center;
+}
+.card-image {
+    margin-bottom: 10px;
+    cursor: pointer;
+    position: relative;
+}
+.image {
+    width: 250px;
+    height: 250px;
+}
+.card-text {
+    text-transform: capitalize;
+    font-size: 2.5rem;
+}
+.score {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 25px;
+    margin: 0 auto;
+    font-size: 3rem;
+}
+.round {
+    display: flex;
+    margin: 0 auto;
+    justify-content: center;
+    font-size: 2.25rem;
+}
+.message {
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 20px;
+}
+
+.game-anim {
+    position: relative;
+    display: flex;
+    justify-content: center;
+}
+
+.game-anim .image-wrapper {
+    position: relative;
+    display: inline-block;
+    padding-top: 0.1rem;
+    padding-right: 0.05rem;
+    padding-bottom: 0.15rem;
+}
+
+.game-anim .line {
+    position: absolute;
+    left: 40%;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    height: 3px;
+    width: 100px;
+    transform-origin: 0.5 0;
+    background-color: black;
+}
+
+.game-anim .image {
+    display: inline-block;
+    opacity: 0;
+}
